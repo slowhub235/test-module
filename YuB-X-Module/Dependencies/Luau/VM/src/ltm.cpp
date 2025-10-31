@@ -31,7 +31,6 @@ const char* const luaT_typenames[] = {
 
 const char* const luaT_eventname[] = {
     // ORDER TM
-    
     LUAU_SHUFFLE7(LUAU_COMMA_SEP,
     "__index",
     "__newindex",
@@ -43,7 +42,6 @@ const char* const luaT_eventname[] = {
 
     "__eq",
 
-    
     LUAU_SHUFFLE8(LUAU_COMMA_SEP,
     "__add",
     "__sub",
@@ -54,7 +52,6 @@ const char* const luaT_eventname[] = {
     "__pow",
     "__unm"),
 
-    
     LUAU_SHUFFLE5(LUAU_COMMA_SEP,
     "__lt",
     "__le",

@@ -11,7 +11,6 @@
 // clang-format off
 typedef enum
 {
-    
     LUAU_SHUFFLE7(LUAU_COMMA_SEP,
     TM_INDEX,
     TM_NEWINDEX,
@@ -23,7 +22,6 @@ typedef enum
 
     TM_EQ, // last tag method with `fast' access
 
-    
     LUAU_SHUFFLE8(LUAU_COMMA_SEP,
     TM_ADD,
     TM_SUB,
@@ -34,7 +32,6 @@ typedef enum
     TM_POW,
     TM_UNM),
 
-    
     LUAU_SHUFFLE5(LUAU_COMMA_SEP,
     TM_LT,
     TM_LE,

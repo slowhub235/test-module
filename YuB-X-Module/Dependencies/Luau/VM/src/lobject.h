@@ -290,7 +290,6 @@ typedef struct Proto
 {
     CommonHeader;
 
-
     LUAU_SHUFFLE5(LUAU_SEMICOLON_SEP,
     uint8_t nups, // number of upvalues
     uint8_t numparams,
@@ -300,7 +299,6 @@ typedef struct Proto
 
     TValue* k;              // constants used by the function
     Instruction* code;      // function bytecode
-
     LUAU_SHUFFLE2(LUAU_SEMICOLON_SEP,
     struct Proto** p,       // functions defined inside the function
     const Instruction* codeentry);
@@ -308,23 +306,21 @@ typedef struct Proto
     void* execdata;
     uintptr_t exectarget;
 
-
     LUAU_SHUFFLE5(LUAU_SEMICOLON_SEP,
-    PROTO_MEMBER2_ENC<uint8_t*> lineinfo,      // for each instruction, line number as a delta from baseline
-    PROTO_MEMBER2_ENC<int*> abslineinfo,       // baseline line info, one entry for each 1<<linegaplog2 instructions; allocated after lineinfo
-    PROTO_MEMBER2_ENC<struct LocVar*> locvars, // information about local variables
-    PROTO_MEMBER2_ENC<TString**> upvalues,     // upvalue names
-    PROTO_MEMBER2_ENC<TString*> source);
+    PROTO_LINEINFO_ENC<uint8_t*> lineinfo,      // for each instruction, line number as a delta from baseline
+    PROTO_ABSLINEINFO_ENC<int*> abslineinfo,       // baseline line info, one entry for each 1<<linegaplog2 instructions; allocated after lineinfo
+    PROTO_LOCVARS_ENC<struct LocVar*> locvars, // information about local variables
+    PROTO_UPVALUES_ENC<TString**> upvalues,     // upvalue names
+    PROTO_SOURCE_ENC<TString*> source);
 
     PROTO_DEBUGNAME_ENC<TString*> debugname;
-    PROTO_DEBUGISN_ENC<uint8_t*> debuginsn; // a copy of code[] array with just opcodes
+    PROTO_DEBUGINSN_ENC<uint8_t*> debuginsn; // a copy of code[] array with just opcodes
 
     PROTO_TYPEINFO_ENC<uint8_t*> typeinfo;
 
-    void* userdata;
+    PROTO_USERDATA_ENC<void*> userdata;
 
     GCObject* gclist;
-
 
     LUAU_SHUFFLE9(LUAU_SEMICOLON_SEP,
     int sizecode,
@@ -459,7 +455,6 @@ typedef struct LuaTable
 {
     CommonHeader;
 
-
     LUAU_SHUFFLE5(LUAU_SEMICOLON_SEP,
     uint8_t tmcache,    // 1<<p means tagmethod(p) is not present
     uint8_t readonly,   // sandboxing feature to prohibit writes to table
@@ -473,7 +468,6 @@ typedef struct LuaTable
         int lastfree;  // any free position is before this position
         int aboundary; // negated 'boundary' of `array' array; iff aboundary < 0
     };
-
 
     LUAU_SHUFFLE4(LUAU_SEMICOLON_SEP,
     struct LuaTable* metatable,

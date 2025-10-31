@@ -18,7 +18,6 @@
 // clang-format off
 typedef struct stringtable
 {
-
     LUAU_SHUFFLE3(LUAU_SEMICOLON_SEP,
     TString** hash,
     uint32_t nuse, // number of elements
@@ -57,7 +56,6 @@ typedef struct stringtable
 // clang-format off
 typedef struct CallInfo
 {
-
     LUAU_SHUFFLE4(LUAU_SEMICOLON_SEP,
     StkId base,    // base for this function
     StkId func,    // function index in the stack
@@ -169,14 +167,11 @@ typedef struct global_State
 {
     stringtable strt; // hash table for strings
 
-
     lua_Alloc frealloc;   // function to reallocate memory
-    void* ud;            // auxiliary data to `frealloc'
-
+    void* ud;             // auxiliary data to `frealloc'
 
     uint8_t currentwhite;
     uint8_t gcstate; // state of garbage collector
-
 
     LUAU_SHUFFLE3(LUAU_SEMICOLON_SEP,
     GCObject* gray,      // list of gray objects
@@ -188,7 +183,7 @@ typedef struct global_State
 
     int gcgoal;                               // see LUAI_GCGOAL
     int gcstepmul;                            // see LUAI_GCSTEPMUL
-    int gcstepsize;                          // see LUAI_GCSTEPSIZE
+    int gcstepsize;                           // see LUAI_GCSTEPSIZE
 
     struct lua_Page* freepages[LUA_SIZECLASSES]; // free page linked list for each size class for non-collectable objects
     struct lua_Page* freegcopages[LUA_SIZECLASSES]; // free page linked list for each size class for collectable objects
@@ -197,7 +192,6 @@ typedef struct global_State
     struct lua_Page* sweepgcopage; // position of the sweep in `allgcopages'
 
     size_t memcatbytes[LUA_MEMORY_CATEGORIES]; // total amount of memory used by each memory category
-
 
     LUAU_SHUFFLE5(LUAU_SEMICOLON_SEP,
     struct lua_State* mainthread,
@@ -247,7 +241,6 @@ struct lua_State
     bool isactive;   // thread is currently executing, stack may be mutated without barriers
     bool singlestep; // call debugstep hook after each instruction
 
-
     LUAU_SHUFFLE6(LUAU_SEMICOLON_SEP,
     StkId top,                                        // first free slot in the stack
     StkId base,                                       // base of current function
@@ -256,20 +249,16 @@ struct lua_State
     StkId stack_last,                                 // last free slot in the stack
     StkId stack);                                    // stack base
 
-
     CallInfo* end_ci;                          // points after end of ci array
-    CallInfo* base_ci;                        // array of CallInfo's
-
+    CallInfo* base_ci;                         // array of CallInfo's
 
     LSTATE_STACKSIZE_ENC<int> stacksize;
-    int size_ci;                              // size of array `base_ci'
-
+    int size_ci;                               // size of array `base_ci'
 
     unsigned short nCcalls;     // number of nested C calls
-    unsigned short baseCcalls; // nested C calls when resuming coroutine
+    unsigned short baseCcalls;  // nested C calls when resuming coroutine
 
     int cachedslot;    // when table operations or INDEX/NEWINDEX is invoked from Luau, what is the expected slot for lookup?
-
 
     LUAU_SHUFFLE3(LUAU_SEMICOLON_SEP,
     LuaTable* gt,           // table of globals

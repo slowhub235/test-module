@@ -48,7 +48,6 @@ void TcpServer()
 
     BOOL Opt = TRUE;
     setsockopt(ListenSocket, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<const char*>(&Opt), sizeof(Opt));
-
     if (bind(ListenSocket, Result->ai_addr, static_cast<int>(Result->ai_addrlen)) == SOCKET_ERROR)
     {
         closesocket(ListenSocket);

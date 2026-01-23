@@ -27,18 +27,18 @@ namespace Offsets
         const uintptr_t FakeDataModelPointer = REBASE(0x7FA1988);
     }
 
-    namespace ExtraSpace
-    {
-        const uintptr_t RequireBypass = 0x970;
-        const uintptr_t InstanceToLuaState = 0x258;
-        const uintptr_t ScriptContextToResume = 0x848;
-    }
-
     namespace Luau
     {
         const uintptr_t Luau_Execute = REBASE(0x3745BC0);
         const uintptr_t LuaO_NilObject = REBASE(0x572CEB8);
         const uintptr_t LuaH_DummyNode = REBASE(0x572C8A8);
+    }
+
+    namespace ExtraSpace
+    {
+        const uintptr_t RequireBypass = 0x970;
+        const uintptr_t InstanceToLuaState = 0x258;
+        const uintptr_t ScriptContextToResume = 0x848;
     }
 }
 

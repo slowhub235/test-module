@@ -2,9 +2,6 @@
 
 #include <Roblox/EncryptionsHelper.hpp>
 
-#define LUAU_COMMA_SEP ,
-#define LUAU_SEMICOLON_SEP ;
-
 #define PROTO_LINEINFO_ENC VMValue2
 #define PROTO_ABSLINEINFO_ENC VMValue1
 #define PROTO_LOCVARS_ENC VMValue4

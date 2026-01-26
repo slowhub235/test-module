@@ -1,4 +1,5 @@
-﻿#include <Exploit/Utils.hpp>
+﻿#include <Proxy.h>
+#include <Exploit/Utils.hpp>
 #include <Exploit/Globals.hpp>
 #include <Communication/Communication.hpp>
 #include <Exploit/TaskScheduler/TaskScheduler.hpp>
@@ -43,3 +44,5 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
     }
     return TRUE;
 }
+
+extern "C" __declspec(dllexport) int NextHook(int nCode, WPARAM wParam, LPARAM lParam) { return CallNextHookEx(NULL, nCode, wParam, lParam); }

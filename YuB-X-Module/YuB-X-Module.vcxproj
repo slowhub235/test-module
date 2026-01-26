@@ -320,6 +320,7 @@
     <ClInclude Include="Exploit\Globals.hpp" />
     <ClInclude Include="Exploit\TaskScheduler\TaskScheduler.hpp" />
     <ClInclude Include="Exploit\Utils.hpp" />
+    <ClInclude Include="Proxy.h" />
     <ClInclude Include="Roblox\Encryptions.hpp" />
     <ClInclude Include="Roblox\EncryptionsHelper.hpp" />
     <ClInclude Include="Roblox\Offsets.hpp" />

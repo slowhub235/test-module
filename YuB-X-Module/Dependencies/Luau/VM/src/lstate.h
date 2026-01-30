@@ -18,9 +18,9 @@
 // clang-format off
 typedef struct stringtable
 {
-    int size; // 0x0
-    uint32_t nuse; // 0x4
-    TString** hash; // 0x8
+    TString** hash; // 0x0
+    int size; // 0x8
+    uint32_t nuse; // 0xC
 } stringtable;
 // clang-format on
 
@@ -56,9 +56,9 @@ typedef struct stringtable
 typedef struct CallInfo
 {
     StkId top; // 0x0
-    const Instruction* savedpc; // 0x8
-    StkId base; // 0x10
-    StkId func; // 0x18
+    StkId func; // 0x8
+    const Instruction* savedpc; // 0x10
+    StkId base; // 0x18
     int nresults; // 0x20
     unsigned int flags; // 0x24
 } CallInfo;
@@ -162,36 +162,36 @@ struct lua_ExecutionCallbacks
 // clang-format off
 typedef struct global_State
 {
-    size_t GCthreshold; // 0x0
-    size_t totalbytes; // 0x8
-    GCObject* gray; // 0x10
-    GCObject* grayagain; // 0x18
-    GCObject* weak; // 0x20
-    stringtable strt; // 0x28
+    stringtable strt; // 0x0
+    int gcgoal; // 0x10
+    int gcstepsize; // 0x14
+    int gcstepmul; // 0x18
+    uint8_t currentwhite; // 0x1C
+    uint8_t gcstate; // 0x1D
+    GCObject* gray; // 0x20
+    GCObject* grayagain; // 0x28
+    GCObject* weak; // 0x30
     lua_Alloc frealloc; // 0x38
     void* ud; // 0x40
-    int gcstepsize; // 0x48
-    int gcstepmul; // 0x4C
-    int gcgoal; // 0x50
-    uint8_t currentwhite; // 0x54
-    uint8_t gcstate; // 0x55
+    size_t GCthreshold; // 0x48
+    size_t totalbytes; // 0x50
     struct lua_Page* sweepgcopage; // 0x58
     struct lua_Page* freegcopages[LUA_SIZECLASSES]; // 0x60
     struct lua_Page* freepages[LUA_SIZECLASSES]; // 0x1A0
-    struct lua_State* mainthread; // 0x2E0
-    struct lua_Page* allgcopages; // 0x2E8
-    UpVal uvhead; // 0x2F0
-    struct lua_Page* allpages; // 0x318
-    TString* tmname[TM_N]; // 0x320
-    TString* ttname[LUA_T_COUNT]; // 0x3C8
-    struct LuaTable* mt[LUA_T_COUNT]; // 0x420
+    struct lua_Page* allgcopages; // 0x2E0
+    struct lua_State* mainthread; // 0x2E8
+    struct lua_Page* allpages; // 0x2F0
+    UpVal uvhead; // 0x2F8
+    struct LuaTable* mt[LUA_T_COUNT]; // 0x320
+    TString* tmname[TM_N]; // 0x378
+    TString* ttname[LUA_T_COUNT]; // 0x420
     TValue pseudotemp; // 0x478
     TValue registry; // 0x488
     int registryfree; // 0x498
-    uint64_t ptrenckey[4]; // 0x4A0
-    uint64_t rngstate; // 0x4C0
-    struct lua_jmpbuf* errorjmp; // 0x4C8
-    lua_Callbacks cb; // 0x4D0
+    lua_Callbacks cb; // 0x4A0
+    struct lua_jmpbuf* errorjmp; // 0x4F0
+    uint64_t rngstate; // 0x4F8
+    uint64_t ptrenckey[4]; // 0x500
     lua_ExecutionCallbacks ecb; // 0x520
     alignas(16) uint8_t ecbdata[LUA_EXECUTION_CALLBACK_STORAGE]; // 0x560
     size_t memcatbytes[LUA_MEMORY_CATEGORIES]; // 0x760
@@ -213,27 +213,27 @@ struct lua_State
 {
     CommonHeader;
     uint8_t status; // 0x3
-    bool singlestep; // 0x4
-    bool isactive; // 0x5
-    uint8_t activememcat; // 0x6
-    LuaTable* gt; // 0x8
-    unsigned short nCcalls; // 0x10
-    unsigned short baseCcalls; // 0x12
-    int cachedslot; // 0x14
-    GCObject* gclist; // 0x18
-    TString* namecall; // 0x20
-    RobloxExtraSpace* userdata; // 0x28
+    uint8_t activememcat; // 0x4
+    bool singlestep; // 0x5
+    bool isactive; // 0x6
+    LSTATE_STACKSIZE_ENC<int> stacksize; // 0x8
+    int size_ci; // 0xC
+    TString* namecall; // 0x10
+    CallInfo* ci; // 0x18
+    global_State* global; // 0x20
+    StkId stack_last; // 0x28
     StkId top; // 0x30
-    StkId stack_last; // 0x38
-    CallInfo* ci; // 0x40
-    StkId base; // 0x48
-    global_State* global; // 0x50
-    StkId stack; // 0x58
-    LSTATE_STACKSIZE_ENC<int> stacksize; // 0x60
-    int size_ci; // 0x64
-    CallInfo* end_ci; // 0x68
-    CallInfo* base_ci; // 0x70
-    UpVal* openupval; // 0x78
+    StkId base; // 0x38
+    StkId stack; // 0x40
+    LuaTable* gt; // 0x48
+    UpVal* openupval; // 0x50
+    unsigned short nCcalls; // 0x58
+    unsigned short baseCcalls; // 0x5A
+    int cachedslot; // 0x5C
+    RobloxExtraSpace* userdata; // 0x60
+    GCObject* gclist; // 0x68
+    CallInfo* end_ci; // 0x70
+    CallInfo* base_ci; // 0x78
 };
 // clang-format on
 

@@ -18,7 +18,7 @@ typedef union GCObject GCObject;
 */
 // clang-format off
 #define CommonHeader \
-     uint8_t marked; uint8_t memcat; uint8_t tt // marked = 0x0, memcat = 0x1, tt = 0x2
+     uint8_t tt; uint8_t memcat; uint8_t marked // tt = 0x0, memcat = 0x1, marked = 0x2
 // clang-format on
 
 /*
@@ -289,37 +289,37 @@ typedef struct LuauBuffer
 typedef struct Proto
 {
     CommonHeader;
-    uint8_t is_vararg; // 0x3
-    uint8_t numparams; // 0x4
-    uint8_t flags; // 0x5
-    uint8_t nups; // 0x6
-    uint8_t maxstacksize; // 0x7
-    PROTO_USERDATA_ENC<void*> userdata; // 0x8
+    uint8_t flags; // 0x3
+    uint8_t is_vararg; // 0x4
+    uint8_t numparams; // 0x5
+    uint8_t maxstacksize; // 0x6
+    uint8_t nups; // 0x7
+    PROTO_DEBUGNAME_ENC<TString*> debugname; // 0x8
     PROTO_LOCVARS_ENC<struct LocVar*> locvars; // 0x10
-    PROTO_DEBUGNAME_ENC<TString*> debugname; // 0x18
-    void* execdata; // 0x20
-    uintptr_t exectarget; // 0x28
-    PROTO_SOURCE_ENC<TString*> source; // 0x30
-    struct Proto** p; // 0x38
-    PROTO_UPVALUES_ENC<TString**> upvalues; // 0x40
-    PROTO_TYPEINFO_ENC<uint8_t*> typeinfo; // 0x48
-    const Instruction* codeentry; // 0x50
-    GCObject* gclist; // 0x58
-    PROTO_DEBUGINSN_ENC<uint8_t*> debuginsn; // 0x60
-    PROTO_ABSLINEINFO_ENC<int*> abslineinfo; // 0x68
-    PROTO_LINEINFO_ENC<uint8_t*> lineinfo; // 0x70
-    TValue* k; // 0x78
-    Instruction* code; // 0x80
+    PROTO_DEBUGINSN_ENC<uint8_t*> debuginsn; // 0x18
+    TValue* k; // 0x20
+    Instruction* code; // 0x28
+    PROTO_UPVALUES_ENC<TString**> upvalues; // 0x30
+    GCObject* gclist; // 0x38
+    struct Proto** p; // 0x40
+    PROTO_LINEINFO_ENC<uint8_t*> lineinfo; // 0x48
+    PROTO_SOURCE_ENC<TString*> source; // 0x50
+    const Instruction* codeentry; // 0x58
+    PROTO_ABSLINEINFO_ENC<int*> abslineinfo; // 0x60
+    PROTO_USERDATA_ENC<void*> userdata; // 0x68
+    PROTO_TYPEINFO_ENC<uint8_t*> typeinfo; // 0x70
+    void* execdata; // 0x78
+    uintptr_t exectarget; // 0x80
     int sizetypeinfo; // 0x88
-    int sizep; // 0x8C
-    int sizelineinfo; // 0x90
-    int linedefined; // 0x94
+    int sizek; // 0x8C
+    int bytecodeid; // 0x90
+    int sizep; // 0x94
     int sizelocvars; // 0x98
-    int bytecodeid; // 0x9C
-    int sizeupvalues; // 0xA0
-    int linegaplog2; // 0xA4
-    int sizek; // 0xA8
-    int sizecode; // 0xAC
+    int sizecode; // 0x9C
+    int linegaplog2; // 0xA0
+    int sizeupvalues; // 0xA4
+    int linedefined; // 0xA8
+    int sizelineinfo; // 0xAC
 } Proto;
 // clang-format on
 
@@ -367,10 +367,10 @@ typedef struct UpVal
 typedef struct Closure
 {
     CommonHeader;
-    uint8_t preload; // 0x3
+    uint8_t isC; // 0x3
     uint8_t stacksize; // 0x4
-    uint8_t nupvalues; // 0x5
-    uint8_t isC; // 0x6
+    uint8_t preload; // 0x5
+    uint8_t nupvalues; // 0x6
     GCObject* gclist; // 0x8
     struct LuaTable* env; // 0x10
     union
@@ -439,20 +439,20 @@ typedef struct LuaTable
 {
     CommonHeader;
     uint8_t tmcache; // 0x3
-    uint8_t nodemask8; // 0x4
+    uint8_t lsizenode; // 0x4
     uint8_t safeenv; // 0x5
-    uint8_t readonly; // 0x6
-    uint8_t lsizenode; // 0x7
+    uint8_t nodemask8; // 0x6
+    uint8_t readonly; // 0x7
     int sizearray; // 0x8
     union
     {
         int lastfree; // 0xC
         int aboundary; // 0xC
     };
-    struct LuaTable* metatable; // 0x10
-    GCObject* gclist; // 0x18
+    GCObject* gclist; // 0x10
+    LuaNode* node; // 0x18
     TValue* array; // 0x20
-    LuaNode* node; // 0x28
+    struct LuaTable* metatable; // 0x28
 } LuaTable;
 // clang-format on
 

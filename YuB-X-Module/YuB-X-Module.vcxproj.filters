@@ -539,6 +539,9 @@
     <ClInclude Include="Dependencies\Luau\Compiler\src\Utils.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Dependencies\Luau\Common\include\Luau\SmallVector.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="Dependencies\cpr\lib\cpr.lib" />

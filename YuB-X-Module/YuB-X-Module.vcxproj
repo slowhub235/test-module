@@ -273,6 +273,7 @@
     <ClInclude Include="Dependencies\Luau\Common\include\Luau\ExperimentalFlags.h" />
     <ClInclude Include="Dependencies\Luau\Common\include\Luau\HashUtil.h" />
     <ClInclude Include="Dependencies\Luau\Common\include\Luau\ScopedSeenSet.h" />
+    <ClInclude Include="Dependencies\Luau\Common\include\Luau\SmallVector.h" />
     <ClInclude Include="Dependencies\Luau\Common\include\Luau\StringUtils.h" />
     <ClInclude Include="Dependencies\Luau\Common\include\Luau\TimeTrace.h" />
     <ClInclude Include="Dependencies\Luau\Common\include\Luau\Variant.h" />

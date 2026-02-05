@@ -13,18 +13,18 @@ struct RobloxExtraSpace
 {
     struct Shared
     {
-        char Pad0[0x28];
-        void* ScriptContext; // 0x28
+        char Pad0[0x20];
+        void* ScriptContext; // 0x20
     };
 
     char Pad1[0x18];
     Shared* SharedExtraSpace; // 0x18
-    char Pad2[0x28];
-    std::int32_t Identity; // 0x48
+    char Pad2[0x10];
+    std::int32_t Identity; // 0x30
     char Pad4[0x14];
-    std::weak_ptr<uintptr_t> Script; // 0x60
-    char Pad3[0x10];
-    uintptr_t Capabilities; // 0x80
+    std::weak_ptr<uintptr_t> Script; // 0x48
+    char Pad3[0x20];
+    uintptr_t Capabilities; // 0x78
 };
 
 // option for multiple returns in `lua_pcall' and `lua_call'
@@ -467,15 +467,15 @@ struct lua_Debug
 struct lua_Callbacks
 {
     void* userdata;
-    void (*debugbreak)(lua_State* L, lua_Debug* ar);
-    int16_t(*useratom)(const char* s, size_t l); // 0x10
-    void (*debugstep)(lua_State* L, lua_Debug* ar);
-    void (*debuginterrupt)(lua_State* L, lua_Debug* ar); // 0x20
-    void (*interrupt)(lua_State* L, int gc); // 0x28
-    void (*debugprotectederror)(lua_State* L); // 0x30
+    void (*interrupt)(lua_State* L, int gc); // 0x8
     void (*panic)(lua_State* L, int errcode);
-    void (*onallocate)(lua_State* L, size_t osize, size_t nsize); // 0x40
-    void (*userthread)(lua_State* LP, lua_State* L); // 0x48
+    void (*userthread)(lua_State* LP, lua_State* L); // 0x18
+    void (*debuginterrupt)(lua_State* L, lua_Debug* ar); // 0x20
+    void (*debugbreak)(lua_State* L, lua_Debug* ar);
+    int16_t(*useratom)(const char* s, size_t l); // 0x30
+    void (*debugprotectederror)(lua_State* L); // 0x38
+    void (*debugstep)(lua_State* L, lua_Debug* ar);
+    void (*onallocate)(lua_State* L, size_t osize, size_t nsize); // 0x48
 };
 typedef struct lua_Callbacks lua_Callbacks;
 

@@ -6,5 +6,5 @@ This roblox executor source is a clean v2 of the YuB-X-Low source and is made to
 - 3 sUNC
 - Level 8
   
-Updated for: version-80c7b8e578f241ff  
+Updated for: version-bd08027bb04e4045  
 Join https://discord.gg/wJCZ6Wy5qN for more
